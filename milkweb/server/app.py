@@ -1,10 +1,10 @@
 import hikari
 import asyncio
 from secrets import token_urlsafe
-from quart import Quart, url_for, session, redirect, request, jsonify
+from quart import Quart, url_for, session, redirect, request, jsonify, render_template
 from milkweb.server import get_redirect_url, get_user_token, APP_SECRET, SCOPES, NotAuthorized
 
-app = Quart(__name__)
+app = Quart(__name__, template_folder="../templates/html")
 app.secret_key = APP_SECRET
 rest = hikari.RESTApp()
 
