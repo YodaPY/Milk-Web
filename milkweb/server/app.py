@@ -1,10 +1,10 @@
 import hikari
 from uuid import uuid4
 from quart import Quart, url_for, session, redirect, request
-from milkweb.server import get_redirect_url, get_user_token, APP_KEY, SCOPES
+from milkweb.server import get_redirect_url, get_user_token, APP_SECRET, SCOPES
 
 app = Quart(__name__)
-app.secret_key = APP_KEY
+app.secret_key = APP_SECRET
 rest = hikari.RESTApp()
 
 @app.route("/")

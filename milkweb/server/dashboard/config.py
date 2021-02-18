@@ -11,4 +11,4 @@ AUTHORIZATION_URL: Final[str] = OAUTH2_URL + "/authorize"
 TOKEN_URL: Final[str] = OAUTH2_URL + "/token"
 CLIENT_ID: Final[int] = int(os.environ["CLIENT_ID"])
 CLIENT_SECRET: Final[str] = os.environ["CLIENT_SECRET"]
-APP_KEY: Final[str] = os.environ["APP_KEY"]
+APP_SECRET: Final[str] = os.environ["APP_SECRET"]
