@@ -1,5 +1,6 @@
 import hikari
 import asyncio
+import functools
 from secrets import token_urlsafe
 from quart import Quart, url_for, session, redirect, request, jsonify, render_template
 from milkweb.server import get_redirect_url, get_user_token, APP_SECRET, SCOPES, NotAuthorized
@@ -9,15 +10,20 @@ app.secret_key = APP_SECRET
 rest = hikari.RESTApp()
 
 def requires_authorization(func):
-    async def is_authorized():
-        with app.app_context():
+    @functools.wraps(func)
+    async def is_authorized(*args, **kwargs):
+        async with app.app_context():
             token = session.get("token")
             if not token:
                 raise NotAuthorized
 
-            await func()
+            return await func(*args, **kwargs)
     
-    return asyncio.run(is_authorized())
+    return is_authorized
+
+@app.errorhandler(NotAuthorized)
+async def handle_authorization_error(error):
+    return redirect(url_for("login"))
 
 @app.route("/")
 async def hello() -> str:
@@ -50,12 +56,8 @@ async def callback():
     return redirect(url_for("dashboard"))
 
 @app.route("/dashboard")
+@requires_authorization
 async def dashboard():
-    token = session.get("token")
-
-    if not token:
-        return redirect(url_for("login"))
-    
     async with rest.acquire(token) as client:
         guilds = await client.fetch_my_guilds()
 
