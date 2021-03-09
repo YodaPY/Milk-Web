@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link href="/static/css/dashboard.css" rel="stylesheet">
+
+        <title>Milk</title>
+    </head>
+    <body>
+        <div class="header">
+            <p id="milk"><img id="milk_avatar" src="https://cdn.discordapp.com/attachments/339112602867204097/816369618619858954/8de961f8b07016371b8bf4e5a4cfd44a.png" alt="Milk">Milk</p>
+            <p id="username"><b>{{ user.username }}</b><img id="user_avatar" src="{{ user.avatar_url }}" alt="{{ user.username }}"></p>
+        </div>
+        <h1>Your guilds</h1>
+        <ol>
+            {% for guild in guilds %}
+                <img id="guild_avatar" src="{{ guild.icon_url if guild.icon_url else 'https://cdn.discordapp.com/icons/713407870028349471/d6fa4c2a1c90ae5490edb7c8e786bb38.png?size=4096' }}" width="90" height="90" alt="{{ guild.name }}">
+                <div id="guild_overlay_text">{{ guild.name }}</div>
+            {% endfor %}
+
+        </ol>
+        <div class="alert alert-danger" role="alert" id="profile_alert">
+            <strong>Profiles are not implemented yet</strong>
+        </div>
+        <script>
+            document.getElementById("user_avatar").onclick = function () {
+                document.getElementById("profile_alert").style.display = "block";
+                let disalert = function () {
+                    document.getElementById("profile_alert").style.display = "none";
+                };
+                setTimeout(disalert, 5000);
+            };
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <body>
+</html>

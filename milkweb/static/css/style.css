@@ -1,0 +1,14 @@
+body {
+    background-color: #262729;
+}
+
+.milk-header {
+    color: #D3D3D4;
+    text-align: left;
+    padding-top: 100px;
+    font-size: 75px;
+}
+
+.milk-img {
+    float: right;
+}

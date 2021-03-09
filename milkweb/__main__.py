@@ -1,3 +1,3 @@
-from milkweb.server import app
+from milkweb import app
 
 app.run()

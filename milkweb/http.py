@@ -1,7 +1,7 @@
 import requests
 from typing import List
 from aiohttp import request
-from milkweb.server import CLIENT_ID, CLIENT_SECRET, AUTHORIZATION_URL, REDIRECT_URI, TOKEN_URL, SCOPES
+from milkweb import CLIENT_ID, CLIENT_SECRET, AUTHORIZATION_URL, REDIRECT_URI, TOKEN_URL, SCOPES
 
 async def get_redirect_url(*, state: str) -> str:
     URL = (
