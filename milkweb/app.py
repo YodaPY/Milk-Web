@@ -17,7 +17,7 @@ def requires_authorization(func):
             if not token:
                 raise NotAuthorized
 
-            return await func(token)
+            return await func(token, *args, **kwargs)
     
     return is_authorized
 
@@ -63,6 +63,11 @@ async def dashboard(token):
         guilds = await client.fetch_my_guilds()
 
     return await render_template("dashboard.html", user=my_user, guilds=guilds)
+
+@app.route("/dashboard/<int:guild_id>")
+@requires_authorization
+async def dashboard_for_guild(token, guild_id):
+    return str(guild_id)
 
 def run():
     app.run(debug=True)
