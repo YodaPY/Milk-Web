@@ -17,9 +17,11 @@
         <div class="guilds">
             <ol>
                 {% for guild in guilds %}
-                    <img class="guild_avatar" src="{{ guild.icon_url if guild.icon_url else 'https://cdn.discordapp.com/icons/713407870028349471/d6fa4c2a1c90ae5490edb7c8e786bb38.png?size=4096' }}" alt="{{ guild.id }}">
+                    <div class="tooltip">
+                        <img class="guild_avatar" src="{{ guild.icon_url if guild.icon_url else 'https://cdn.discordapp.com/icons/713407870028349471/d6fa4c2a1c90ae5490edb7c8e786bb38.png?size=4096' }}" alt="{{ guild.id }}">
+                        <span class="tooltiptext">{{ guild.name }}</span>
+                    </div>
                 {% endfor %}
-
             </ol>
         </div>
         <div class="alert alert-danger" role="alert" id="profile_alert">
