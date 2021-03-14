@@ -1,0 +1,40 @@
+body {
+    background-color: #262729;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #202225;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+  
+li a {
+    display: block;
+    color: #D3D3D4;
+    padding: 13px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+li a.active {
+    background-color: #36393f;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #262729;
+    color: white;
+}
+
+#cards {
+    margin-left: 15%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link href="/static/css/dashboard_nav.css" rel="stylesheet">
-        <link href="/static/css/dashboard.css" rel="stylesheet">
+        <link href="/static/css/dashboard_prefixes.css" rel="stylesheet">
 
         <title>Milk Dashboard</title>
     </head>
@@ -14,28 +14,26 @@
             <p id="milk"><img id="milk_avatar" src="https://cdn.discordapp.com/attachments/339112602867204097/816369618619858954/8de961f8b07016371b8bf4e5a4cfd44a.png" alt="Milk">Milk</p>
             <p id="username"><b>{{ user.username }}</b><img id="user_avatar" src="{{ user.avatar_url }}" alt="{{ user.username }}"></p>
         </div>
-        <h1 style="text-align: center; padding-top: 30px;">Manage servers</h1>
-        <div class="guilds">
-            <ol>
-                {% for guild in guilds %}
-                    <img class="guild_avatar" src="{{ guild.icon_url if guild.icon_url else 'https://cdn.discordapp.com/icons/713407870028349471/d6fa4c2a1c90ae5490edb7c8e786bb38.png?size=4096' }}" alt="{{ guild.id }}">
-                {% endfor %}
-            </ol>
+        <ul>
+            <li><a href="#home">Prefixes</a></li>
+            <li><a href="#news">Verification</a></li>
+            <li><a href="#contact">Reaction Roles</a></li>
+            <li><a href="#about">Levelling</a></li>
+        </ul>
+        <div id="cards">
+            <div class="card text-white bg-dark mb-3" style="width: 500px;">
+                <div class="card-body">
+                    <h5 class="card-title">Update the prefix</h5>
+                    <p class="card-text">Hello fucker! You better update the prefix or I will eat your beans!</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Prefix" aria-label="Prefix" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="alert alert-danger" role="alert" id="profile_alert">
             <strong>Profiles are not implemented yet</strong>
         </div>
-        <script>
-            var on_guild_click = function () {
-                window.location.href = `http://127.0.0.1:5000/dashboard/${this.alt}/prefixes`;
-            };
-
-            var guild_avatars = document.getElementsByClassName("guild_avatar");
-            for (var i = 0; i < guild_avatars.length; i++) {
-                guild_avatars[i].addEventListener("click", on_guild_click, false);
-            }
-        </script>
         <script src="/static/js/alerts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <body>
-</html>
+    </body>

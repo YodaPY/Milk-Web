@@ -34,7 +34,7 @@ async def hello() -> str:
 
 @app.route("/login")
 async def login():
-    redirect_url = await get_redirect_url(
+    redirect_url = get_redirect_url(
         state=session["state"]
     )
 
@@ -62,12 +62,17 @@ async def dashboard(token):
         my_user = await client.fetch_my_user()
         guilds = await client.fetch_my_guilds()
 
+    guilds = [g for g in guilds if g.my_permissions & hikari.Permissions.MANAGE_GUILD]
+
     return await render_template("dashboard.html", user=my_user, guilds=guilds)
 
-@app.route("/dashboard/<int:guild_id>")
+@app.route("/dashboard/<int:guild_id>/prefixes")
 @requires_authorization
 async def dashboard_for_guild(token, guild_id):
-    return str(guild_id)
+    async with rest.acquire(token) as client:
+        my_user = await client.fetch_my_user()
+
+    return await render_template("dashboard_prefixes.html", user=my_user)
 
 def run():
     app.run(debug=True)
