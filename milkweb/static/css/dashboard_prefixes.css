@@ -14,11 +14,17 @@ ul {
 }
   
 li a {
-    display: block;
+    display: inline-block;
     color: #D3D3D4;
-    padding: 13px 16px;
+    margin-top: 10px;
+    margin-left: 3px;
     text-decoration: none;
     font-size: 20px;
+}
+
+li .text-channel {
+    margin-top: -5px;
+    margin-left: 7px;
 }
 
 li a.active {
@@ -27,7 +33,6 @@ li a.active {
 }
 
 li a:hover:not(.active) {
-    background-color: #262729;
     color: white;
 }
 
@@ -37,4 +42,15 @@ li a:hover:not(.active) {
     padding-right: 30px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+#text-input {
+    border-color: #202225;
+    background-color: #262729;
+    color: white;
+    padding-right: 20px;
+}
+
+#prefix-group {
+    display: inline;
 }
